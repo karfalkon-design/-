@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071a2b" />
+  <title>زاد المسلم | تعلم دينك</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #071a2b;
+      --navy-light: #0d2940;
+      --gold: #d6ae5c;
+      --gold-light: #f1d58a;
+      --green: #16806b;
+      --white: #f8f5ed;
+      --muted: #b7c5cc;
+      --card: rgba(13, 41, 64, 0.82);
+      --border: rgba(214, 174, 92, 0.25);
+      --shadow: 0 20px 55px rgba(0,0,0,.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(22,128,107,.18), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(214,174,92,.10), transparent 25%),
+        var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .06;
+      background-image:
+        linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff);
+      background-size: 80px 140px;
+      background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+      z-index: -1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(7,26,43,.75);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      width: min(1150px, 92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      border-radius: 50%;
+      font-size: 1.4rem;
+      box-shadow: 0 0 20px rgba(214,174,92,.12);
+    }
+
+    .brand span {
+      color: var(--gold-light);
+    }
+
+    .nav-link {
+      color: var(--muted);
+      font-size: .9rem;
+      transition: .3s;
+    }
+
+    .nav-link:hover {
+      color: var(--gold-light);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 510px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 70px 0 55px;
+    }
+
+    .hero::before {
+      content: "ﷲ";
+      position: absolute;
+      font-family: "Amiri", serif;
+      font-size: 18rem;
+      color: rgba(214,174,92,.035);
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+      font-size: .85rem;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "✦";
+      color: var(--gold);
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      line-height: 1.25;
+      margin-bottom: 18px;
+      font-weight: 800;
+      background: linear-gradient(120deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 2;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .hero-verse {
+      font-family: "Amiri", serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      margin-top: 28px;
+    }
+
+    /* SECTION */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 80px;
+    }
+
+    .main-card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(18,54,79,.95), rgba(8,29,46,.95));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 35px 28px;
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: .4s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .main-card::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba(214,174,92,.13);
+      border-radius: 50%;
+      top: -55px;
+      left: -55px;
+    }
+
+    .main-card::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 1px solid rgba(214,174,92,.08);
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+    }
+
+    .main-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(214,174,92,.65);
+      box-shadow: 0 25px 70px rgba(0,0,0,.35), 0 0 35px rgba(214,174,92,.06);
+    }
+
+    .card-number {
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      font-size: .8rem;
+      color: rgba(255,255,255,.35);
+      font-weight: 700;
+    }
+
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      font-size: 2.2rem;
+      background: rgba(214,174,92,.10);
+      border: 1px solid rgba(214,174,92,.20);
+      margin-bottom: 22px;
+    }
+
+    .main-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .main-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: .92rem;
+      margin-bottom: 25px;
+    }
+
+    .card-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px;
+      border-radius: 12px;
+      background: rgba(214,174,92,.12);
+      color: var(--gold-light);
+      border: 1px solid rgba(214,174,92,.25);
+      transition: .3s;
+      font-weight: 700;
+    }
+
+    .card-button:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* CONTENT PAGES */
+    .page {
+      display: none;
+      padding: 45px 0 80px;
+      animation: fadeIn .4s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-header .big-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .page-header h2 {
+      font-size: 2.2rem;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(214,174,92,.3);
+      background: transparent;
+      color: var(--gold-light);
+      padding: 10px 18px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      transition: .3s;
+    }
+
+    .back-button:hover {
+      background: rgba(214,174,92,.1);
+    }
+
+    .content-box {
+      background: rgba(13,41,64,.72);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.12);
+    }
+
+    .content-box h3 {
+      color: var(--gold-light);
+      font-size: 1.35rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .content-box h4 {
+      color: #e8d5a6;
+      margin: 20px 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .content-box p {
+      color: #d0dbe0;
+      line-height: 2;
+      margin-bottom: 12px;
+    }
+
+    .content-box ul,
+    .content-box ol {
+      padding-right: 22px;
+      color: #d0dbe0;
+      line-height: 2.2;
+    }
+
+    .content-box li {
+      margin-bottom: 5px;
+    }
+
+    .note {
+      background: rgba(22,128,107,.12);
+      border-right: 4px solid var(--green);
+      padding: 15px 18px;
+      border-radius: 10px;
+      color: #cbe5dc;
+      line-height: 1.9;
+      margin-top: 15px;
+    }
+
+    .warning {
+      background: rgba(214,174,92,.08);
+      border-right: 4px solid var(--gold);
+      padding: 15px 18px;
+      border-radius: 10px;
+      color: #e9d9b4;
+      line-height: 1.9;
+      margin-top: 15px;
+    }
+
+    /* FATIHA */
+    .basmala {
+      font-family: "Amiri", serif;
+      text-align: center;
+      font-size: 2rem;
+      color: var(--gold-light);
+      margin-bottom: 30px;
+    }
+
+    .surah-info {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .info-pill {
+      background: rgba(214,174,92,.09);
+      border: 1px solid rgba(214,174,92,.22);
+      color: #e9d9b4;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: .85rem;
+    }
+
+    .ayah {
+      padding: 25px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+    }
+
+    .ayah:last-child {
+      border-bottom: none;
+    }
+
+    .ayah-text {
+      font-family: "Amiri", serif;
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      line-height: 2.1;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .ayah-number {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      border-radius: 50%;
+      font-family: "Cairo", sans-serif;
+      font-size: .8rem;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .ayah-meaning {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.9;
+    }
+
+    .word-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .word-table th,
+    .word-table td {
+      padding: 14px;
+      text-align: right;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .word-table th {
+      background: rgba(214,174,92,.12);
+      color: var(--gold-light);
+    }
+
+    .word-table td {
+      color: #d0dbe0;
+    }
+
+    .word-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* STEPS */
+    .steps {
+      display: grid;
+      gap: 18px;
+    }
+
+    .step {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      background: rgba(7,26,43,.55);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .step-number {
+      flex: 0 0 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #a87d31);
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .step-content h4 {
+      margin: 0 0 8px;
+      color: #f2d99b;
+      font-size: 1.1rem;
+    }
+
+    .step-content p {
+      margin: 0;
+      font-size: .93rem;
+    }
+
+    .dhikr {
+      font-family: "Amiri", serif;
+      font-size: 1.45rem;
+      color: #f2d99b;
+      line-height: 2;
+      background: rgba(214,174,92,.06);
+      padding: 15px 18px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+
+    .subsection {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .subsection:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 28px 0;
+      text-align: center;
+      color: #8297a3;
+      font-size: .85rem;
+      margin-top: 30px;
+    }
+
+    footer span {
+      color: var(--gold-light);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 850px) {
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .main-card {
+        min-height: auto;
+      }
+
+      .hero {
+        min-height: 430px;
+      }
+
+      .content-box {
+        padding: 22px 18px;
+      }
+
+      .word-table {
+        font-size: .85rem;
+      }
+
+      .word-table th,
+      .word-table td {
+        padding: 10px 8px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      nav {
+        height: 68px;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .nav-link {
+        font-size: .78rem;
+      }
+
+      .hero {
+        padding: 55px 0 40px;
+      }
+
+      .hero-subtitle {
+        font-size: .92rem;
+      }
+
+      .hero-verse {
+        font-size: 1.25rem;
+      }
+
+      .page-header h2 {
+        font-size: 1.75rem;
+      }
+
+      .step {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .step-number {
+        flex-basis: 38px;
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="brand" onclick="showHome(); return false;">
+        <div class="brand-icon">☪</div>
+        <div>زاد <span>المسلم</span></div>
+      </a>
+      <a href="#" class="nav-link" onclick="showHome(); return false;">الرئيسية ←</a>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <main id="homePage">
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">نور العلم · سكينة القلب</div>
+        <h1>زاد المسلم</h1>
+        <p class="hero-subtitle">
+          بوابتك المبسطة لتعلُّم قراءة الفاتحة، وفهم الوضوء،
+          وإتقان الصلاة خطوة بخطوة، بأسلوب واضح وتصميم يليق بجمال هذا الدين.
+        </p>
+        <div class="hero-verse">﴿ وَقُلْ رَبِّ زِدْنِي عِلْمًا ﴾</div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-heading">
+        <h2>ماذا تريد أن تتعلم اليوم؟</h2>
+        <p>اختر القسم الذي تريد الدخول إليه وابدأ رحلتك</p>
+      </div>
+
+      <div class="cards">
+
+        <!-- CARD 1 -->
+        <article class="main-card">
+          <span class="card-number">01</span>
+          <div>
+            <div class="card-icon">📖</div>
+            <h3>قراءة الفاتحة</h3>
+            <p>
+              اقرأ سورة الفاتحة بالتشكيل الصحيح،
+              وتعرّف على معاني آياتها والكلمات المهمة فيها.
+            </p>
+          </div>
+          <a class="card-button" href="#fatiha" onclick="showPage('fatiha'); return false;">
+            دخول القسم <span>←</span>
+          </a>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="main-card">
+          <span class="card-number">02</span>
+          <div>
+            <div class="card-icon">💧</div>
+            <h3>تعلم الوضوء</h3>
+            <p>
+              تعلّم صفة الوضوء بالترتيب،
+              مع الفرائض والسنن والأدعية والتنبيهات المهمة.
+            </p>
+          </div>
+          <a class="card-button" href="#wudu" onclick="showPage('wudu'); return false;">
+            دخول القسم <span>←</span>
+          </a>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="main-card">
+          <span class="card-number">03</span>
+          <div>
+            <div class="card-icon">🕌</div>
+            <h3>تعلم الصلاة</h3>
+            <p>
+              تعرّف على شروط الصلاة وأركانها،
+              وكيف تصلي من تكبيرة الإحرام حتى التسليم.
+            </p>
+          </div>
+          <a class="card-button" href="#salah" onclick="showPage('salah'); return false;">
+            دخول القسم <span>←</span>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FATIHA PAGE -->
+  <section id="fatihaPage" class="page">
+    <div class="container">
+
+      <button class="back-button" onclick="showHome()">→ العودة للرئيسية</button>
+
+      <div class="page-header">
+        <div class="big-icon">📖</div>
+        <h2>قراءة سورة الفاتحة</h2>
+        <p>اقرأ بتأنٍّ، وتدبّر معاني كلام الله تعالى</p>
+      </div>
+
+      <div class="content-box">
+        <div class="basmala">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+
+        <div class="surah-info">
+          <span class="info-pill">سورة مكية</span>
+          <span class="info-pill">عدد الآيات: 7</span>
+          <span class="info-pill">أم الكتاب</span>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+            <span class="ayah-number">١</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: الثناء الكامل لله تعالى، ربِّ جميع الخلق ومدبّر شؤونهم.
+          </div>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            الرَّحْمَٰنِ الرَّحِيمِ
+            <span class="ayah-number">٢</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: الواسع الرحمة، المتصف بالرحمة الدائمة بعباده.
+          </div>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            مَالِكِ يَوْمِ الدِّينِ
+            <span class="ayah-number">٣</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: المالك المتصرف في يوم الجزاء والحساب.
+          </div>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+            <span class="ayah-number">٤</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: نخصّك وحدك بالعبادة، ونطلب منك وحدك العون والاستعانة.
+          </div>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+            <span class="ayah-number">٥</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: دلّنا ووفّقنا وثبّتنا على الطريق المستقيم.
+          </div>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+            <span class="ayah-number">٦</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: طريق الذين أنعمت عليهم من النبيين والصديقين والشهداء والصالحين.
+          </div>
+        </div>
+
+        <div class="ayah">
+          <div class="ayah-text">
+            غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+            <span class="ayah-number">٧</span>
+          </div>
+          <div class="ayah-meaning">
+            المعنى: غير طريق من عرفوا الحق ولم يعملوا به، ولا طريق من ضلّوا عن الحق.
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>تنبيه:</strong>
+          البسملة تُقرأ في أول السورة، أما الآية الأولى في عدّ كثير من أهل العلم فهي:
+          «الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ».
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>📚 معاني بعض كلمات الفاتحة</h3>
+
+        <table class="word-table">
+          <thead>
+            <tr>
+              <th>الكلمة</th>
+              <th>معناها</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>الحمد<
